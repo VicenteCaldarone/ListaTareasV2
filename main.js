@@ -45,7 +45,7 @@ function addDeleteBtn(){
         const ul = li.parentNode;
         ul.removeChild(li);
 
-        if(!ul.hasChildNodes()){
+        if(document.getElementsByTagName("li").length === 0){
             empty.style.display = "block";
         }
     });
