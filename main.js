@@ -1,10 +1,11 @@
 const input = document.querySelector('input');
 const addBtn = document.querySelector('.btn-add');
-const ul = document.querySelector('ul');
+// const ul = document.querySelector('ul');
+
 const empty = document.querySelector('.empty');
 const selectPrioridad = document.querySelector('.prioridad');
 
-const classPrioridad = ["li-alta", "li-media", "li-baja"];
+const classPrioridad = ["alta", "media", "baja"];
 
 
 addBtn.addEventListener("click", e => {
@@ -13,18 +14,19 @@ addBtn.addEventListener("click", e => {
     const prioridad = selectPrioridad.value;
 
     if(text !== "" && prioridad !== "-1" ){
+        const ul = document.querySelector(".ul-"+classPrioridad[prioridad]);
         const li = document.createElement("li");
         const p = document.createElement("p");
-        
+
         p.textContent = text;
 
-        li.classList.add(classPrioridad[prioridad]);
+        li.classList.add("li-"+classPrioridad[prioridad]);
 
         li.appendChild(p);
         li.appendChild(addDeleteBtn());
         li.appendChild(addOkBtn());
 
-        ul.insertBefore(li,  document.querySelectorAll("."+classPrioridad[prioridad])[0]);
+        ul.insertBefore(li,  document.querySelectorAll(".li-"+classPrioridad[prioridad])[0]);
 
         input.value = "";
         empty.style.display = "none";
