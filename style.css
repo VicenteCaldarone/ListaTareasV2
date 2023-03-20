@@ -1,0 +1,82 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;   /* interlineado */
+    background-color: lightseagreen;
+    color: white;
+}
+h1{
+  text-align: center;  
+  color: darkslategray;
+}
+.container{
+    width: 30%;
+    background-color: white;
+    padding: 30px;
+    margin: 30px auto;  /* margin horizontal 30 y vertical auto */
+
+}
+.li-container{
+    background-color: white;
+    width: 100%;
+    color: darkslategray;
+    margin-top: 20px;
+}
+.tareasList{
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+form{
+    display: flex;
+}
+input{
+    padding: 15px 10px;
+    width: 400px;
+}
+.btn-add{
+    padding: 5px 15px;
+    color: white;
+    background-color: teal;
+    font-family: fantasy;
+    border: none;
+    font-size: 1.4rem;
+    outline: none;
+}
+.btn-add:hover{
+    cursor: pointer;
+    background-color: lightseagreen;
+}
+.empty{
+    color: darkslategray;
+}
+ul {
+    padding: 0;
+}
+li{
+    display: flex;
+    background-color: gray;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+li p {
+    color: black;
+    width: 100%;
+    padding-left: 15px;
+}
+.btn-delete{
+    padding: 5px 15px;
+    color: white;
+    background-color: darkred;
+    /*font-family: fantasy;*/
+    border: none;
+    font-size: 1.4rem;
+    outline: none;
+    border-radius: 5px;
+}
+.btn-delete:hover{
+    cursor: pointer;
+    background-color: red;
+}
