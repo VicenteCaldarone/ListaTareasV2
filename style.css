@@ -12,7 +12,7 @@ h1{
   color: darkslategray;
 }
 .container{
-    width: 30%;
+    width: 50%;
     background-color: white;
     padding: 30px;
     margin: 30px auto;  /* margin horizontal 30 y vertical auto */
@@ -34,7 +34,7 @@ form{
 }
 input{
     padding: 15px 10px;
-    width: 400px;
+    width: 100%;
 }
 .btn-add{
     padding: 5px 15px;
@@ -55,11 +55,27 @@ input{
 ul {
     padding: 0;
 }
-li{
+
+.li-alta{
     display: flex;
-    background-color: gray;
+    background-color: #f5c2c7;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+.li-media{
+    display: flex;
+    background-color: #ffecb5;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.li-baja{
+    display: flex;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.finalizada{
+    text-decoration-line: line-through;
 }
 li p {
     color: black;
@@ -79,4 +95,18 @@ li p {
 .btn-delete:hover{
     cursor: pointer;
     background-color: red;
+}
+.btn-ok{
+    padding: 5px 15px;
+    color: white;
+    background-color: darkgreen;
+    /*font-family: fantasy;*/
+    border: none;
+    font-size: 1.4rem;
+    outline: none;
+    border-radius: 5px;
+}
+.btn-ok:hover{
+    cursor: pointer;
+    background-color: green;
 }

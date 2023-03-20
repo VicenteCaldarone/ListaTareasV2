@@ -6,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Lista de Tareas</title>
+    <title>Lista de Tareas Priorizadas</title>
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Tareas</h1>
+        <h1>Lista de Tareas Priorizadas</h1>
         <div class="tareasList">
             <form>
                 <input type="text" placeholder="Agragar tarea ...">
+                <select class="prioridad">
+                    <option value="-1" disabled selected>Con Prioridad</option>
+                    <option value="0">Alta</option>
+                    <option value="1">Media</option>
+                    <option value="2">Baja</option>
+                </select>
                 <button class="btn-add">+</button>
             </form>
         </div>
