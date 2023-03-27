@@ -16,7 +16,7 @@ const historicoTareasOptions = document.querySelector('#tareasOptions');
 btnAddTarea.addEventListener("click", e => {
     e.preventDefault();
     
-    if(categoria.value.trim() === '' || tarea.value.trim() === '' || selPrioridad.value === -1 ){
+    if(categoria.value.trim() === '' || tarea.value.trim() === '' || selPrioridad.value === '-1' ){
         return;
     }
 
