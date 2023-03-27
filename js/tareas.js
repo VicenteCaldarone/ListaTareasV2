@@ -23,10 +23,10 @@ btnAddTarea.addEventListener("click", e => {
     const cardCol = document.createElement('div');
     cardCol.classList.add('col-4','p-1');
 
-    let cardCategodia;
-    if(!existeOptionValue(historicoCategoriasOptions, categoria.value)){
-        cardCategodia = crearCard(categoria.value, tarea.value, false);
-        cardCol.appendChild(cardCategodia);
+    let cardCategoria;
+    if(!existeCardCategoria(categoria.value)){
+        cardCategoria = crearCard(categoria.value, tarea.value, false);
+        cardCol.appendChild(cardCategoria);
         cardContainer.appendChild(cardCol);
     }else{
         crearCard(categoria.value, tarea.value, true);
@@ -54,14 +54,28 @@ function crearCard(categoria, tarea, existeCategoria){
         cardBody.classList.add('card-body');
         card.appendChild(cardBody);
 
+        const titleContainer = document.createElement('div');
+        titleContainer.classList.add('d-flex', 'justify-content-between');
+
         const cardTitle = document.createElement('h5');
         cardTitle.classList.add('card-title');
         cardTitle.textContent = categoria;
-        cardBody.appendChild(cardTitle);
+        titleContainer.appendChild(cardTitle);
 
+        const btnClose = document.createElement('button');
+        btnClose.type = 'button';
+        btnClose.classList.add('btn-close');
+        btnClose.setAttribute('aria-label', 'Close');
+        btnClose.addEventListener('click', e => {
+            let colCart = card.parentNode;
+            colCart.parentNode.removeChild(colCart);
+        });
+        titleContainer.appendChild(btnClose);
+
+        cardBody.appendChild(titleContainer);
     }else{
         cardTitle = Array.from(document.querySelectorAll('.card .card-body .card-title')).find( e => e.textContent === categoria);
-        cardBody = cardTitle.parentNode;
+        cardBody = cardTitle.parentNode.parentNode;
         card = cardBody.parentNode;
     }
 
@@ -110,15 +124,13 @@ function crearAccordionDetalle(accordionTareaId, headingTareaId, collapsTareaId)
     const accBody = document.createElement('div');
 
     accDetalle.classList.add('accordion-collapse', 'collapse');
-    accDetalle.setAttribute('aria-labelledby', headingTareaId); // TODO
-    accDetalle.setAttribute('data-bs-parent', `#${accordionTareaId}`); // TODO
+    accDetalle.setAttribute('aria-labelledby', headingTareaId);
+    accDetalle.setAttribute('data-bs-parent', `#${accordionTareaId}`);
     accDetalle.id = collapsTareaId;
 
     accBody.classList.add('accordion-body', 'p-2');
-    // accBody.textContent = ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore facere aut dicta vel explicabo consectetur possimus nobis labore. Eos eum accusamus placeat, neque velit voluptas? Similique fugiat tempora obcaecati perspiciatis.';
 
     const textContainer = document.createElement('div');
-    //  textContainer.classList.add('form-floating');
 
     const textarea = document.createElement('textarea');
     textarea.classList.add('form-control', 'comentario-tarea');
@@ -193,4 +205,10 @@ function existeOptionValue(dataList, optionValue){
     }
 
     return false;
+}
+
+function existeCardCategoria(nombreCategoria){
+    let cardCategiria = Array.from(document.querySelectorAll('.card-title')).find(e => e.textContent === nombreCategoria);
+
+    return cardCategiria !== undefined;
 }
