@@ -176,8 +176,15 @@ function crearBotonDelete(accordionTareaId){
     btn.innerHTML = '<i class="fa-solid fa-x"></i>';
 
     btn.addEventListener('click', e => {
-        let tareaEliminar = document.getElementById(accordionTareaId);
-        tareaEliminar.parentNode.removeChild(tareaEliminar);
+        let tareaFinalizar = document.getElementById(accordionTareaId);
+
+        tareaFinalizar.addEventListener('hidden.bs.collapse', e => {
+            let tareaEliminar = document.getElementById(accordionTareaId);
+            tareaEliminar.parentNode.removeChild(tareaEliminar);
+        });
+
+        let btnCollapse = tareaFinalizar.querySelector('button');
+        btnCollapse.click();
     });
 
     return btn;
