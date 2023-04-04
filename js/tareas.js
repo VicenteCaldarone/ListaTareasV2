@@ -16,7 +16,7 @@ const historicoTareasOptions = document.querySelector('#tareasOptions');
 btnAddTarea.addEventListener("click", e => {
     e.preventDefault();
     
-    if(categoria.value.trim() === '' || tarea.value.trim() === '' || selPrioridad.value === '-1' ){
+    if(!validarInputs()){
         return;
     }
 
@@ -42,6 +42,25 @@ btnAddTarea.addEventListener("click", e => {
 
     categoria.focus();
 });
+
+function validarInputs(){
+    if(categoria.value.trim() === ''){
+        modalInfo(categoria, 'Debes escribir una Categoría');
+        return false;
+    }
+
+    if(tarea.value.trim() === ''){
+        modalInfo(tarea, 'Debes escribir una Tarea');
+
+        return false;
+    }
+
+    if(selPrioridad.value === '-1' ){
+        modalInfo(selPrioridad, 'Debes seleccionar una Prioridad');
+        return false;
+    }
+    return true;
+}
 
 function crearCard(categoria, tarea, existeCategoria){
     let card, cardBody;
@@ -218,4 +237,18 @@ function existeCardCategoria(nombreCategoria){
     let cardCategiria = Array.from(document.querySelectorAll('.card-title')).find(e => e.textContent === nombreCategoria);
 
     return cardCategiria !== undefined;
+}
+
+function modalInfo(input, mensaje){
+    const infoModal = new bootstrap.Modal('#infoModal', {'backdrop':'static'});
+    
+    const infoModalbody = document.querySelector('#infoModalText');
+    infoModalbody.textContent = mensaje;
+
+    const btnOK = document.querySelector('#btn-info-modal-ok');
+    btnOK.addEventListener('click', e => {
+           input.focus();
+    });
+
+    infoModal.show();
 }
