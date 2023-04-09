@@ -13,3 +13,9 @@ body{
 .comentario-tarea{
     height: 100px;
 }
+textarea{
+    border-style: none;
+}
+textarea:focus{
+    border-style: solid;
+}

@@ -24,15 +24,22 @@ btnAddTarea.addEventListener("click", e => {
     cardCol.classList.add('col-4','p-1');
 
     let cardCategoria;
-    if(!existeCardCategoria(categoria.value)){
-        cardCategoria = crearCard(categoria.value, tarea.value, false);
+    let categoriaNombre = categoria.value;
+    if(!existeCardCategoria(categoriaNombre)){
+        cardCategoria = crearCard(categoriaNombre, tarea.value, false);
         cardCol.appendChild(cardCategoria);
         cardContainer.appendChild(cardCol);
+
+        cardCategoria.querySelector('.btn-close').addEventListener('click', e => {
+            modalConfirm(`Queres eliminar la Categoría "${categoriaNombre}" y todas sus Tareas?`, ()=>{
+                cardContainer.removeChild(cardCol);
+            });
+        });
     }else{
-        crearCard(categoria.value, tarea.value, true);
+        crearCard(categoriaNombre, tarea.value, true);
     }
 
-    agregarHistorico(historicoCategoriasOptions, categoria.value);
+    agregarHistorico(historicoCategoriasOptions, categoriaNombre);
     agregarHistorico(historicoTareasOptions, tarea.value);
 
     // limpio controles
@@ -62,7 +69,7 @@ function validarInputs(){
     return true;
 }
 
-function crearCard(categoria, tarea, existeCategoria){
+function crearCard(categoriaNombre, tarea, existeCategoria){
     let card, cardBody;
 
     if(!existeCategoria){
@@ -78,22 +85,24 @@ function crearCard(categoria, tarea, existeCategoria){
 
         const cardTitle = document.createElement('h5');
         cardTitle.classList.add('card-title');
-        cardTitle.textContent = categoria;
+        cardTitle.textContent = categoriaNombre;
         titleContainer.appendChild(cardTitle);
 
         const btnClose = document.createElement('button');
         btnClose.type = 'button';
         btnClose.classList.add('btn-close');
-        btnClose.setAttribute('aria-label', 'Close');
-        btnClose.addEventListener('click', e => {
-            let colCart = card.parentNode;
-            colCart.parentNode.removeChild(colCart);
+        // btnClose.setAttribute('aria-label', 'Close');
+/*         btnClose.addEventListener('click', e => {
+            modalConfirm(`Queres eliminar la Categoría "${categoriaNombre}" y todas sus Tareas?`, ()=>{
+                let carCol = document.querySelector(`#${categoriaNombre}`);
+                carCol.parentNode.removeChild(carCol);
+            });
         });
-        titleContainer.appendChild(btnClose);
+ */        titleContainer.appendChild(btnClose);
 
         cardBody.appendChild(titleContainer);
     }else{
-        cardTitle = Array.from(document.querySelectorAll('.card .card-body .card-title')).find( e => e.textContent === categoria);
+        cardTitle = Array.from(document.querySelectorAll('.card .card-body .card-title')).find( e => e.textContent === categoriaNombre);
         cardBody = cardTitle.parentNode.parentNode;
         card = cardBody.parentNode;
     }
@@ -251,4 +260,18 @@ function modalInfo(input, mensaje){
     });
 
     infoModal.show();
+}
+function modalConfirm(mensaje, callback){
+    const confirmModal = new bootstrap.Modal('#confirmModal', {'backdrop':'static'});
+    
+    const infoModalbody = document.querySelector('#confirmModalText');
+    infoModalbody.textContent = mensaje;
+
+    const btnSi = document.querySelector('#btn-confirm-modal-si');
+    btnSi.addEventListener('click', e => {
+            callback();
+           // alert('SI');
+    });
+
+    confirmModal.show();
 }

@@ -33,7 +33,7 @@
                         </select>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-primary" id="btn-addTarea"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                        <button class="btn btn-light" id="btn-addTarea"><i class="fa-sharp fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </form>
@@ -43,8 +43,9 @@
             <div class="row" id="cardContainer">
             </div>        
         </div>
-        <!-- Modal -->
+        <!-- Modal Info -->
         <!-- https://codepen.io/ajchambeaud/pen/KpVvMV?editors=1010 -->
+
         <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -57,6 +58,24 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btn-info-modal-ok">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <!-- Modal Confirm -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="confirmModalLabel">Confirmación</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="confirmModalText">
+                        Debes escribir una Categoría
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btn-confirm-modal-si">Si</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
